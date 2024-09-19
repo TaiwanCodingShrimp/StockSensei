@@ -13,7 +13,7 @@ RUN pip install poetry
 WORKDIR /backend
 
 # Copy pyproject.toml and poetry.lock for dependency management
-COPY ./backend/pyproject.toml ./backend/poetry.lock* ./
+COPY ./pyproject.toml ./poetry.lock* ./
 
 # Skip install packages listed in the [tool.poetry.dev-dependencies] 
 RUN poetry config virtualenvs.create false \
@@ -38,5 +38,5 @@ CMD curl --fail http://localhost:8000/health/ || exit 1
 
 
 # Use Django's built-in development server for development
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "/backend/src/manage.py", "runserver", "0.0.0.0:8000"]
 
